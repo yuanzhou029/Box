@@ -26,8 +26,8 @@ jobs:
       - name: Prepare App
         run: |
           mkdir -p ${{ github.workspace }}/apk/
-          for file in $(find /home/runner/work/TVBoxOSC/TVBoxOSC/app/build/outputs/apk/ -name "*.apk" -print); do
-          mv "$file" /home/runner/work/TVBoxOSC/TVBoxOSC/apk/
+          for file in $(find /home/runner/work/Box/Box/app/build/outputs/apk/ -name "*.apk" -print); do
+          mv "$file" /home/runner/work/Box/Box/apk/
           done
       - name: Upload App To Artifact
         uses: actions/upload-artifact@v3
@@ -38,7 +38,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ${{ github.workspace }}/apk/*
-          tag_name: YHTV-${{ github.run_number }}
+          tag_name: v${{ github.run_number }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
